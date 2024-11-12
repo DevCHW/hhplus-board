@@ -1,10 +1,10 @@
-package com.hhplus.hhplusframeworkstudyboard
+package com.hhplus.board
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class HhplusFrameworkStudyBoardApplicationTests {
+class HHplusBoardApplicationTests {
 
 	@Test
 	fun contextLoads() {

@@ -1,11 +1,11 @@
-package com.hhplus.hhplusframeworkstudyboard
+package com.hhplus.board
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class HhplusFrameworkStudyBoardApplication
+class HHplusBoardApplication
 
 fun main(args: Array<String>) {
-	runApplication<HhplusFrameworkStudyBoardApplication>(*args)
+	runApplication<HHplusBoardApplication>(*args)
 }

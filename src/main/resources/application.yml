@@ -1,0 +1,11 @@
+# Spring Boot running in default properties
+spring:
+  application:
+    name: hhplus-board
+
+  profiles:
+    default: local # Default profile set to local
+
+  mvc:
+    view:
+      suffix: .html

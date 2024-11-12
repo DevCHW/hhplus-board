@@ -4,9 +4,20 @@ plugins {
 	id 'org.springframework.boot' version '3.3.5'
 	id 'io.spring.dependency-management' version '1.1.6'
 	id 'org.jetbrains.kotlin.plugin.jpa' version '1.9.25'
+	id 'com.epages.restdocs-api-spec' version "0.17.1"
+	id 'org.asciidoctor.jvm.convert' version "3.3.2"
+
 }
 
-group = 'com.hhplus'
+ext {
+	snippetsDir = file('build/generated-snippets') // 스니펫 경로
+}
+
+configurations {
+	asciidoctorExt
+}
+
+group = 'com.hhplus.board'
 version = '0.0.1-SNAPSHOT'
 
 java {
@@ -20,15 +31,38 @@ repositories {
 }
 
 dependencies {
+	// spring-jpa
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// spring-web
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// jackson
 	implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
+
+	// reflection
 	implementation 'org.jetbrains.kotlin:kotlin-reflect'
+
+	// h2
 	runtimeOnly 'com.h2database:h2'
+
+	// mysql
 	runtimeOnly 'com.mysql:mysql-connector-j'
+
+	// test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.jetbrains.kotlin:kotlin-test-junit5'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// restdocs
+	asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+	testImplementation 'org.springframework.restdocs:spring-restdocs-restassured'
+	testImplementation 'io.rest-assured:spring-mock-mvc'
+
+	// rest docs api spec (Open API Spec 파일로 변환)
+	testImplementation "com.epages:restdocs-api-spec-restassured:0.17.1"
+	testImplementation "com.epages:restdocs-api-spec-mockmvc:0.17.1"
 }
 
 kotlin {
@@ -44,5 +78,49 @@ allOpen {
 }
 
 tasks.named('test') {
+	outputs.dir snippetsDir
 	useJUnitPlatform()
 }
+
+asciidoctor {
+	dependsOn test
+	configurations 'asciidoctorExt'
+	baseDirFollowsSourceFile()	// 다른 adoc 파일을 include 할 때 경로를 baseDir로 맞춘다.
+	inputs.dir snippetsDir
+	outputDir file('build/docs/asciidoc')
+
+	sources {
+		include("**/index.adoc") // html로 만들 adoc 파일 설정. 추가로 더 지정할 수 있음
+	}
+}
+
+tasks.resolveMainClassName {
+	dependsOn 'copyDocument'
+}
+
+tasks.jar {
+	dependsOn 'copyDocument'
+}
+
+// Task 추가
+tasks.register('copyDocument', Copy) {
+	from file("build/docs/asciidoc")
+	into file("build/resources/main/static/docs") // 필요에 따라 templates로도 할 수 있음.
+
+	include "index.html"
+
+	rename "index.html", "api-docs.html"
+
+	dependsOn asciidoctor
+}
+
+build {
+	dependsOn copyDocument
+}
+
+bootJar {
+	dependsOn copyDocument
+}
+
+
+
