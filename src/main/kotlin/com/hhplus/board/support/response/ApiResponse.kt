@@ -2,7 +2,9 @@ package com.hhplus.board.support.response
 
 import com.example.ktboard.domain.error.ErrorMessage
 import com.example.ktboard.domain.error.ErrorType
+import com.fasterxml.jackson.annotation.JsonInclude
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 data class ApiResponse<T> private constructor(
     val result: ResultType,
     val data: T? = null,

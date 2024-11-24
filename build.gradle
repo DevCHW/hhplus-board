@@ -37,8 +37,14 @@ dependencies {
 	// spring-web
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
+	// security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
 	// jackson
 	implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
+
+	// validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
 	// reflection
 	implementation 'org.jetbrains.kotlin:kotlin-reflect'
@@ -48,6 +54,10 @@ dependencies {
 
 	// mysql
 	runtimeOnly 'com.mysql:mysql-connector-j'
+
+	// jwt
+	implementation "io.jsonwebtoken:jjwt-api:${jwtVersion}"
+	runtimeOnly "io.jsonwebtoken:jjwt-impl:${jwtVersion}", "io.jsonwebtoken:jjwt-jackson:${jwtVersion}"
 
 	// test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

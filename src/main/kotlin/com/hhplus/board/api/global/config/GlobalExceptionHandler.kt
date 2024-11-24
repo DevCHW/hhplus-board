@@ -1,4 +1,4 @@
-package com.hhplus.board.api.config
+package com.hhplus.board.api.global.config
 
 import com.example.ktboard.domain.error.CoreException
 import com.example.ktboard.domain.error.ErrorType
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 
 @RestControllerAdvice
 class GlobalExceptionHandler {
+
     private val log: Logger = LoggerFactory.getLogger(javaClass)
 
     @ExceptionHandler(CoreException::class)

@@ -1,22 +1,7 @@
 # Spring Boot running in live mode
 spring.config.activate.on-profile: live
-
-server:
-  port: 8080
-
 spring:
-  datasource:
-    core:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: {CORD_DB_URL}
-      username: {CORE_DB_USER}
-      password: {CORE_DB_PASSWORD}
-      pool-name: core-db-pool
-      minimum-idle: 2
-      idle-timeout: 60000
-      maximum-pool-size: 4
-      connection-timeout: 60000
-      max-lifetime: 1800000
-      keepalive-time: 30000
-      validation-timeout: 1000
-      connection-test-query: SELECT 1
+  config:
+    import:
+      - jwt.yml
+      - storage.yml
