@@ -3,15 +3,15 @@ package com.hhplus.board.api.v1.user.application.dto.result
 import com.hhplus.board.api.v1.user.domain.model.User
 import java.time.LocalDateTime
 
-data class CreateUserResult(
+data class SignUpResult(
     val id: Long,
     val username: String,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime,
 ) {
     companion object {
-        fun from(user: User): CreateUserResult {
-            return CreateUserResult(
+        fun from(user: User): SignUpResult {
+            return SignUpResult(
                 id = user.id,
                 username = user.username,
                 createdAt = user.createdAt,
@@ -24,8 +24,8 @@ data class CreateUserResult(
             username: String = "username",
             createdAt: LocalDateTime = LocalDateTime.now(),
             updatedAt: LocalDateTime = LocalDateTime.now(),
-        ): CreateUserResult {
-            return CreateUserResult(
+        ): SignUpResult {
+            return SignUpResult(
                 id = id,
                 username = username,
                 createdAt = createdAt,

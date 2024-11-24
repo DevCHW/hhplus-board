@@ -1,13 +1,13 @@
 package com.hhplus.board.api.v1.user.controller.dto.request
 
-import com.hhplus.board.api.v1.user.application.dto.spec.CreateUserSpec
+import com.hhplus.board.api.v1.user.application.dto.spec.SignUpSpec
 
 data class UserCreateRequest(
     val username: String,
     val password: String,
 ) {
-    fun toSpec(): CreateUserSpec {
-        return CreateUserSpec(
+    fun toSpec(): SignUpSpec {
+        return SignUpSpec(
             username = username,
             password = password,
         )
@@ -17,8 +17,8 @@ data class UserCreateRequest(
         fun fixture(
             username: String = "username",
             password: String = "password",
-        ): CreateUserSpec {
-            return CreateUserSpec(
+        ): SignUpSpec {
+            return SignUpSpec(
                 username = username,
                 password = password,
             )

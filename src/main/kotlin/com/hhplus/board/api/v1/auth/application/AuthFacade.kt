@@ -2,6 +2,7 @@ package com.hhplus.board.api.v1.auth.application
 
 import com.example.ktboard.domain.error.CoreException
 import com.example.ktboard.domain.error.ErrorType
+import com.example.ktboard.domain.error.ErrorType.*
 import com.hhplus.board.api.global.jwt.JwtProvider
 import com.hhplus.board.api.v1.auth.application.dto.result.LoginResult
 import com.hhplus.board.api.v1.auth.application.dto.spec.LoginSpec
@@ -23,7 +24,7 @@ class AuthFacade(
         val user = userService.getUserByUsername(loginSpec.username)
 
         if (!passwordEncoder.matches(loginSpec.password, user.password)) {
-            throw CoreException(ErrorType.VALIDATION_ERROR, "비밀번호가 일치하지 않습니다.")
+            throw CoreException(SERVER_UNPROCESSABLE, "비밀번호가 일치하지 않습니다.")
         }
 
         val token = jwtProvider.generateToken(user)

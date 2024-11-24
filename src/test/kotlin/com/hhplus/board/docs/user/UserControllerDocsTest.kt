@@ -2,7 +2,7 @@ package com.hhplus.board.docs.user
 
 import com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper.document
 import com.hhplus.board.api.v1.user.application.UserFacade
-import com.hhplus.board.api.v1.user.application.dto.result.CreateUserResult
+import com.hhplus.board.api.v1.user.application.dto.result.SignUpResult
 import com.hhplus.board.api.v1.user.controller.UserController
 import com.hhplus.board.api.v1.user.controller.dto.request.UserCreateRequest
 import com.hhplus.board.support.restdocs.RestDocsTestSupport
@@ -31,7 +31,7 @@ class UserControllerDocsTest : RestDocsTestSupport() {
     @Test
     fun `유저 생성 API 문서 테스트`() {
         val request = UserCreateRequest.fixture()
-        every { userFacade.signUp(any()) } returns CreateUserResult.fixture();
+        every { userFacade.signUp(any()) } returns SignUpResult.fixture();
 
         given()
             .body(request)

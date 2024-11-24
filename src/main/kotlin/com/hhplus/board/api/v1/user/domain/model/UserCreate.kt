@@ -14,4 +14,16 @@ data class UserCreate(
         )
     }
 
+    companion object {
+        fun fixture(
+            username: String = "user123",
+            password: String = "qwer1234",
+        ): UserCreate {
+            return UserCreate(
+                username = username,
+                password = password,
+            )
+        }
+    }
+
 }

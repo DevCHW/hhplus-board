@@ -1,7 +1,7 @@
 package com.hhplus.board.api.v1.user.application
 
-import com.hhplus.board.api.v1.user.application.dto.spec.CreateUserSpec
-import com.hhplus.board.api.v1.user.application.dto.result.CreateUserResult
+import com.hhplus.board.api.v1.user.application.dto.spec.SignUpSpec
+import com.hhplus.board.api.v1.user.application.dto.result.SignUpResult
 import com.hhplus.board.api.v1.user.domain.UserService
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
@@ -15,9 +15,9 @@ class UserFacade(
     /**
      * 회원가입
      */
-    fun signUp(createUserSpec: CreateUserSpec): CreateUserResult {
-        val user = userService.create(createUserSpec.toModel(passwordEncoder))
-        return CreateUserResult.from(user)
+    fun signUp(signUpSpec: SignUpSpec): SignUpResult {
+        val user = userService.create(signUpSpec.toModel(passwordEncoder))
+        return SignUpResult.from(user)
     }
 
 }

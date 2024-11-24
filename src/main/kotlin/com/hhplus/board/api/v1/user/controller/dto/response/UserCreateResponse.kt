@@ -1,6 +1,6 @@
 package com.hhplus.board.api.v1.user.controller.dto.response
 
-import com.hhplus.board.api.v1.user.application.dto.result.CreateUserResult
+import com.hhplus.board.api.v1.user.application.dto.result.SignUpResult
 import java.time.LocalDateTime
 
 data class UserCreateResponse(
@@ -11,7 +11,7 @@ data class UserCreateResponse(
     val resultMessage: String,
 ) {
     companion object {
-        fun from(createUserResult: CreateUserResult): UserCreateResponse {
+        fun from(createUserResult: SignUpResult): UserCreateResponse {
             return UserCreateResponse(
                 id = createUserResult.id,
                 username = createUserResult.username,
