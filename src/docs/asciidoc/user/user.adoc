@@ -1,0 +1,11 @@
+=== 회원 생성
+회원 생성에 필요한 값을 입력받아 회원 가입을 한다.
+
+==== Request HTTP Example
+include::{snippets}/create-user/http-request.adoc[]
+==== Request Fields
+include::{snippets}/create-user/request-fields.adoc[]
+==== Response HTTP Example
+include::{snippets}/create-user/http-response.adoc[]
+==== Response Fields
+include::{snippets}/create-user/response-fields.adoc[]

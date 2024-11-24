@@ -18,5 +18,19 @@ data class CreateUserResult(
                 updatedAt = user.updatedAt,
             )
         }
+
+        fun fixture(
+            id: Long = 1L,
+            username: String = "username",
+            createdAt: LocalDateTime = LocalDateTime.now(),
+            updatedAt: LocalDateTime = LocalDateTime.now(),
+        ): CreateUserResult {
+            return CreateUserResult(
+                id = id,
+                username = username,
+                createdAt = createdAt,
+                updatedAt = updatedAt,
+            )
+        }
     }
 }

@@ -12,4 +12,16 @@ data class UserCreateRequest(
             password = password,
         )
     }
+
+    companion object {
+        fun fixture(
+            username: String = "username",
+            password: String = "password",
+        ): CreateUserSpec {
+            return CreateUserSpec(
+                username = username,
+                password = password,
+            )
+        }
+    }
 }

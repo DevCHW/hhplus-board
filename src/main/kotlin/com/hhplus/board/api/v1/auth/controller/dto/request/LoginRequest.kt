@@ -17,4 +17,16 @@ data class LoginRequest(
             password = password,
         )
     }
+
+    companion object {
+        fun fixture(
+            username: String = "username",
+            password: String = "qwer1234",
+        ): LoginRequest {
+            return LoginRequest(
+                username = username,
+                password = password,
+            )
+        }
+    }
 }
