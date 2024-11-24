@@ -3,11 +3,12 @@ package com.hhplus.board.api.global.config
 import com.hhplus.board.api.global.jwt.JwtAuthenticationFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.security.config.Customizer
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configurers.*
 import org.springframework.security.config.http.SessionCreationPolicy
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import org.springframework.web.cors.CorsConfiguration
@@ -19,8 +20,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 class SecurityConfig(
     private val tokenAuthenticationFilter: JwtAuthenticationFilter,
 ) {
-    private val WHITE_LIST: Array<String> = arrayOf("/health", "/docs", "/error", "/favicon.ico")
-
     @Bean
     @Throws(Exception::class)
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
@@ -57,5 +56,10 @@ class SecurityConfig(
         val corsConfigSource = UrlBasedCorsConfigurationSource()
         corsConfigSource.registerCorsConfiguration("/**", corsConfig)
         return corsConfigSource
+    }
+
+    @Bean
+    fun passwordEncoder(): PasswordEncoder {
+        return BCryptPasswordEncoder()
     }
 }

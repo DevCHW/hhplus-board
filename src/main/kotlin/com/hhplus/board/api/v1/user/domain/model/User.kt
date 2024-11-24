@@ -6,6 +6,7 @@ import java.time.LocalDateTime
 data class User(
     val id: Long,
     val username: String,
+    val password: String,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime,
 ) {
@@ -15,6 +16,7 @@ data class User(
             return User(
                 id = userEntity.id,
                 username = userEntity.username,
+                password = userEntity.password,
                 createdAt = userEntity.createdAt,
                 updatedAt = userEntity.updatedAt,
             )
