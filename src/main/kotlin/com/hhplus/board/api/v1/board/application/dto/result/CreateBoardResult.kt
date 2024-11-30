@@ -1,5 +1,7 @@
 package com.hhplus.board.api.v1.board.application.dto.result
 
+import com.hhplus.board.api.v1.board.domain.model.Board
+
 data class CreateBoardResult(
     val id: Long,
     val userId: Long,
@@ -8,6 +10,15 @@ data class CreateBoardResult(
     val content: String,
 ) {
     companion object {
+        fun from(board: Board): CreateBoardResult {
+            return CreateBoardResult(
+                id = board.id,
+                userId = board.userId,
+                username = board.username,
+                title = board.title,
+                content = board.content,
+            )
+        }
         fun fixture(
             id: Long = 1L,
             userId: Long = 1L,

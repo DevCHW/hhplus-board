@@ -18,6 +18,7 @@ data class ModifyBoardSpec(
             content = content,
         )
     }
+
     companion object {
         fun fixture(
             boardId: Long = 1L,
@@ -29,13 +30,12 @@ data class ModifyBoardSpec(
         ): ModifyBoardSpec {
             return ModifyBoardSpec(
                 boardId = boardId,
-                userId = userId,
                 username = username,
+                userId = userId,
                 title = title,
                 content = content,
                 password = password,
             )
         }
     }
-
 }

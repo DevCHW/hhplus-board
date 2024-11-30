@@ -23,8 +23,8 @@ class BoardFacade(
      */
     fun createBoard(createBoardSpec: CreateBoardSpec): CreateBoardResult {
         val user = userService.getUser(createBoardSpec.userId)
-        boardService.createBoard(createBoardSpec.toModel(user.username))
-        return CreateBoardResult.fixture()
+        val board = boardService.createBoard(createBoardSpec.toModel(user.username))
+        return CreateBoardResult.from(board)
     }
 
     /**
@@ -33,18 +33,28 @@ class BoardFacade(
     fun modifyBoard(modifyBoardSpec: ModifyBoardSpec): ModifyBoardResult {
         val board = boardService.getBoard(modifyBoardSpec.boardId)
 
+        if (board.userId != modifyBoardSpec.userId) {
+            throw CoreException(ErrorType.SERVER_UNPROCESSABLE, "본인이 작성한 게시글만 수정할 수 있습니다.")
+        }
+
         if (board.password != modifyBoardSpec.password) {
             throw CoreException(ErrorType.SERVER_UNPROCESSABLE, "비밀번호가 다릅니다.")
         }
 
-        boardService.modifyBoard(modifyBoardSpec.toModel())
-        return ModifyBoardResult.fixture()
+        val modifiedBoard = boardService.modifyBoard(modifyBoardSpec.toModel())
+        return ModifyBoardResult.from(modifiedBoard)
     }
 
     /**
      * 게시글 삭제
      */
     fun deleteBoard(userId: Long, boardId: Long) {
+        val board = boardService.getBoard(boardId)
+
+        if (userId != board.userId) {
+            throw CoreException(ErrorType.SERVER_UNPROCESSABLE, "본인이 작성한 게시글만 삭제할 수 있습니다.")
+        }
+
         boardService.deleteBoard(boardId)
     }
 

@@ -2,7 +2,7 @@ package com.hhplus.board.api.v1.user.application.dto.spec
 
 import com.example.ktboard.domain.error.CoreException
 import com.example.ktboard.domain.error.ErrorType
-import com.hhplus.board.api.v1.user.domain.model.UserCreate
+import com.hhplus.board.api.v1.user.domain.model.CreateUser
 import org.springframework.security.crypto.password.PasswordEncoder
 
 data class SignUpSpec(
@@ -39,8 +39,8 @@ data class SignUpSpec(
         }
     }
 
-    fun toModel(passwordEncoder: PasswordEncoder): UserCreate {
-        return UserCreate(
+    fun toModel(passwordEncoder: PasswordEncoder): CreateUser {
+        return CreateUser(
             username = username,
             password = passwordEncoder.encode(password),
         )

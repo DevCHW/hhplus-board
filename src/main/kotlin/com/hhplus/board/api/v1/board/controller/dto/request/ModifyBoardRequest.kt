@@ -1,6 +1,5 @@
 package com.hhplus.board.api.v1.board.controller.dto.request
 
-import com.hhplus.board.api.v1.board.application.dto.spec.CreateBoardSpec
 import com.hhplus.board.api.v1.board.application.dto.spec.ModifyBoardSpec
 
 data class ModifyBoardRequest(

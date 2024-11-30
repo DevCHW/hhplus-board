@@ -16,7 +16,7 @@ class UserFacade(
      * 회원가입
      */
     fun signUp(signUpSpec: SignUpSpec): SignUpResult {
-        val user = userService.create(signUpSpec.toModel(passwordEncoder))
+        val user = userService.createUser(signUpSpec.toModel(passwordEncoder))
         return SignUpResult.from(user)
     }
 

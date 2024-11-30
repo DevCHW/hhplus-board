@@ -2,7 +2,7 @@ package com.hhplus.board.api.v1.user.domain
 
 import com.example.ktboard.domain.error.CoreException
 import com.example.ktboard.domain.error.ErrorType
-import com.hhplus.board.api.v1.user.domain.model.UserCreate
+import com.hhplus.board.api.v1.user.domain.model.CreateUser
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
@@ -19,10 +19,10 @@ class UserServiceTest(
     @Test
     fun `유저 생성 모델을 통해 유저를 생성할 수 있다`() {
         // given
-        val userCreate = UserCreate.fixture()
+        val userCreate = CreateUser.fixture()
 
         // when
-        val createdUser = userService.create(userCreate)
+        val createdUser = userService.createUser(userCreate)
         val user = userService.getUser(createdUser.id)
 
         // then
@@ -35,8 +35,8 @@ class UserServiceTest(
         @Test
         fun `유저 이름을 통해 유저를 조회할 수 있다`() {
             // given
-            val userCreate = UserCreate.fixture()
-            val createdUser = userService.create(userCreate)
+            val userCreate = CreateUser.fixture()
+            val createdUser = userService.createUser(userCreate)
 
             // when
             val user = userService.getUserByUsername(createdUser.username)
@@ -62,8 +62,8 @@ class UserServiceTest(
     inner class GetUser {
         @Test
         fun `유저 ID를 통해 유저를 조회할 수 있다`() {
-            val userCreate = UserCreate.fixture()
-            val createdUser = userService.create(userCreate)
+            val userCreate = CreateUser.fixture()
+            val createdUser = userService.createUser(userCreate)
             val user = userService.getUser(createdUser.id)
             assertThat(createdUser).isEqualTo(user)
         }

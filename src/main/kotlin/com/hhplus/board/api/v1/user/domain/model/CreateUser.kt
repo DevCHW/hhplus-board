@@ -2,7 +2,7 @@ package com.hhplus.board.api.v1.user.domain.model
 
 import com.hhplus.board.storage.core.entity.UserEntity
 
-data class UserCreate(
+data class CreateUser(
     val username: String,
     val password: String,
 ) {
@@ -18,8 +18,8 @@ data class UserCreate(
         fun fixture(
             username: String = "user123",
             password: String = "qwer1234",
-        ): UserCreate {
-            return UserCreate(
+        ): CreateUser {
+            return CreateUser(
                 username = username,
                 password = password,
             )
