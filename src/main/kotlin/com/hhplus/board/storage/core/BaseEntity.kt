@@ -1,4 +1,4 @@
-package com.hhplus.board.storage.core.entity
+package com.hhplus.board.storage.core
 
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp

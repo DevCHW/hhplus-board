@@ -1,5 +1,6 @@
 package com.hhplus.board.storage.core.entity
 
+import com.hhplus.board.storage.core.BaseEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Table
@@ -12,5 +13,4 @@ class UserEntity(
 
     @Column(name = "password")
     val password: String,
-) : BaseEntity() {
-}
+) : BaseEntity()
