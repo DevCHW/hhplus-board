@@ -1,4 +1,4 @@
-package com.hhplus.board.storage
+package com.hhplus.board.storage.core.config
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
@@ -11,7 +11,7 @@ import javax.sql.DataSource
 class CoreDataSourceConfig {
 
     @Bean
-    @ConfigurationProperties(prefix = "spring.datasource.core")
+    @ConfigurationProperties(prefix = "storage.datasource.core")
     fun hikariConfig(): HikariConfig {
         return HikariConfig()
     }

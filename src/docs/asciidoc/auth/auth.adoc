@@ -1,0 +1,9 @@
+=== 로그인
+유저이름, 비밀번호를 통하여 로그인을 한다.
+
+==== Request HTTP Example
+include::{snippets}/auth-login/http-request.adoc[]
+==== Response HTTP Example
+include::{snippets}/auth-login/http-response.adoc[]
+==== Response Fields
+include::{snippets}/auth-login/response-fields.adoc[]

@@ -9,3 +9,13 @@ endif::[]
 :toc: left
 :toclevels: 2
 :sectlinks:
+
+== 회원
+include::user/user.adoc[]
+
+== 인증
+include::auth/auth.adoc[]
+
+== 게시글
+include::board/board.adoc[]
+

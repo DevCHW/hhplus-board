@@ -4,7 +4,7 @@ spring:
     name: hhplus-board
 
   profiles:
-    default: local # Default profile set to local
+    DEFAULT: local # Default profile set to local
 
   mvc:
     view:

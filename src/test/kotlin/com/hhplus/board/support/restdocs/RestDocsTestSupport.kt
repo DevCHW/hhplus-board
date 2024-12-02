@@ -64,9 +64,10 @@ abstract class RestDocsTestSupport {
             .filters(RequestLoggingFilter(), ResponseLoggingFilter())
 
         val converter = MappingJackson2HttpMessageConverter(objectMapper())
-
+        val argumentResolvers = arrayOf(MockLoginHandlerMethodArgumentResolver())
         return MockMvcBuilders.standaloneSetup(controller)
             .apply<StandaloneMockMvcBuilder>(MockMvcRestDocumentation.documentationConfiguration(restDocumentation))
+            .setCustomArgumentResolvers(*argumentResolvers)
             .setMessageConverters(converter)
             .build()
     }
@@ -77,4 +78,9 @@ abstract class RestDocsTestSupport {
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
             .disable(SerializationFeature.WRITE_DURATIONS_AS_TIMESTAMPS)
     }
+    companion object {
+        const val EXAMPLE_BEARER_TOKEN: String = "Your Bearer token"
+    }
 }
+
+
