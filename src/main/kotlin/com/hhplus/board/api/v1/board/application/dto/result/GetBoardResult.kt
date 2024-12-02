@@ -22,5 +22,24 @@ data class GetBoardResult(
                 updatedAt = board.updatedAt,
             )
         }
+
+        fun fixture(
+            id: Long = 1L,
+            title: String = "title",
+            content: String = "content",
+            username: String = "username",
+            createdAt: LocalDateTime = LocalDateTime.now(),
+            updatedAt: LocalDateTime = LocalDateTime.now(),
+        ): GetBoardResult {
+            return GetBoardResult(
+                id = id,
+                title = title,
+                content = content,
+                username = username,
+                createdAt = createdAt,
+                updatedAt = updatedAt,
+            )
+        }
+
     }
 }

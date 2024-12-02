@@ -2,10 +2,10 @@
 회원 생성에 필요한 값을 입력받아 회원 가입을 한다.
 
 ==== Request HTTP Example
-include::{snippets}/create-user/http-request.adoc[]
+include::{snippets}/create-board/http-request.adoc[]
 ==== Request Fields
-include::{snippets}/create-user/request-fields.adoc[]
+include::{snippets}/create-board/request-fields.adoc[]
 ==== Response HTTP Example
-include::{snippets}/create-user/http-response.adoc[]
+include::{snippets}/create-board/http-response.adoc[]
 ==== Response Fields
-include::{snippets}/create-user/response-fields.adoc[]
+include::{snippets}/create-board/response-fields.adoc[]

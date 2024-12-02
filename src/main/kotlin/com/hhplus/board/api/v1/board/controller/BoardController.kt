@@ -67,7 +67,7 @@ class BoardController(
     }
 
     /**
-     * 게시글 목록 조회
+     * 게시글 단건 조회
      */
     @GetMapping("/api/v1/boards/{boardId}")
     fun getBoard(

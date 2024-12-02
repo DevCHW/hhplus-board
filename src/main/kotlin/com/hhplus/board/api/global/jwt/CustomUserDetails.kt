@@ -35,8 +35,5 @@ class CustomUserDetails(
         return true
     }
 
-    companion object {
-        private const val ROLE_PREFIX = "ROLE_"
-    }
 }
 

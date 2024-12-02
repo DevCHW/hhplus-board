@@ -35,4 +35,22 @@ class BoardEntity(
         val title: String,
         val content: String,
     )
+
+    companion object {
+        fun fixture(
+            userId: Long = 1L,
+            username: String = "username",
+            title: String = "title",
+            content: String = "content",
+            password: String = "password",
+        ): BoardEntity {
+            return BoardEntity(
+                userId = userId,
+                username = username,
+                title = title,
+                content = content,
+                password = password,
+            )
+        }
+    }
 }
