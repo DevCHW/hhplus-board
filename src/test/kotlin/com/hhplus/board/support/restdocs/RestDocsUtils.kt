@@ -7,8 +7,7 @@ import org.springframework.restdocs.operation.preprocess.Preprocessors
 object RestDocsUtils {
     fun requestPreprocessor(): OperationRequestPreprocessor {
         return Preprocessors.preprocessRequest(
-//            Preprocessors.modifyUris().scheme("https").host("hhplus.board.io").removePort(),
-            Preprocessors.modifyUris().scheme("http").host("localhost").port(8080),
+            Preprocessors.modifyUris().scheme("https").host("hhplus-board.p-e.kr").removePort(),
             Preprocessors.prettyPrint(),
         )
     }

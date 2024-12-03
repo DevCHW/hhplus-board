@@ -18,7 +18,7 @@ configurations {
 }
 
 group = 'com.hhplus.board'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 
 java {
 	toolchain {
@@ -130,6 +130,7 @@ build {
 }
 
 bootJar {
+	archiveFileName = 'hhplus-framework-study-board.jar'
 	dependsOn copyDocument
 }
 
