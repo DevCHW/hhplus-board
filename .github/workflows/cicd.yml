@@ -64,8 +64,8 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }} # EC2 유저
           key: ${{ secrets.EC2_PRIVATE_KEY }} # EC2 pem Key
           port: ${{ secrets.EC2_SSH_PORT }} # EC2 SSH Port
-          script: | # 실행할 스크립트
-            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}
+          script: | # 실행할 스크립트 
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/hhplus-framework-study-board
             sudo docker stop $(sudo docker ps -q) 2>/dev/null || true
-            sudo docker run --name hhplus-framework-study-board --rm -d -p 8080:8080 -e spring.profiles.active=live -e storage.datasource.core.username=${{ secrets.CORE_DB_USERNAME }} -e storage.datasource.core.password=${{ secrets.CORE_DB_PASSWORD }} -e storage.datasource.core.jdbc-url=${{ secrets.CORE_DB_URL }} ${{ secrets.DOCKERHUB_USERNAME }}/github-actions-demo
+            sudo docker run --name hhplus-framework-study-board --rm -d -p 8080:8080 -e spring.profiles.active=live -e storage.datasource.core.username=${{ secrets.CORE_DB_USERNAME }} -e storage.datasource.core.password=${{ secrets.CORE_DB_PASSWORD }} -e storage.datasource.core.jdbc-url=${{ secrets.CORE_DB_URL }} ${{ secrets.DOCKERHUB_USERNAME }}/hhplus-framework-study-board
             sudo docker system prune -f
