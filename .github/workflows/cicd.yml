@@ -32,6 +32,10 @@ jobs:
         with:
           arguments: test
 
+      # Gradle 빌드
+      - name: Build with Gradle
+        run: ./gradlew build -x test
+
       # Docker 이미지 빌드
       - name: docker image build
         run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/hhplus-framework-study-board .
