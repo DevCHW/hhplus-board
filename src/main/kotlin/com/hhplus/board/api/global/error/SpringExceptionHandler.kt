@@ -115,7 +115,7 @@ class SpringExceptionHandler {
             val filedNameBuilder = StringBuilder()
             val len = mismatchedInputException!!.path.size
             for (i in 0 until len) {
-                val fieldName = mismatchedInputException!!.path[i].fieldName ?: continue
+                val fieldName = mismatchedInputException.path[i].fieldName ?: continue
 
                 filedNameBuilder.append(fieldName)
                 if (i + 1 != len) filedNameBuilder.append(".")

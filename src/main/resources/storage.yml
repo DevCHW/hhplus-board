@@ -38,7 +38,7 @@ storage:
   datasource:
     core:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://127.0.0.1:3306/hhplus_board?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true
+      jdbc-url: ${storage.datasource.core.jdbc-url}
       username: ${storage.datasource.core.username}
       password: ${storage.datasource.core.password}
       pool-name: core-db-pool
