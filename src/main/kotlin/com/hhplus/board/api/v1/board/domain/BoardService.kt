@@ -3,8 +3,8 @@ package com.hhplus.board.api.v1.board.domain
 import com.hhplus.board.api.v1.board.domain.model.Board
 import com.hhplus.board.api.v1.board.domain.model.CreateBoard
 import com.hhplus.board.api.v1.board.domain.model.ModifyBoard
-import com.hhplus.board.storage.core.entity.BoardEntity
-import com.hhplus.board.storage.core.repository.BoardEntityJpaRepository
+import com.hhplus.board.storage.core.board.BoardEntity
+import com.hhplus.board.storage.core.board.BoardEntityJpaRepository
 import com.hhplus.board.utils.notFountThrow
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
@@ -45,7 +45,8 @@ class BoardService(
     @Transactional
     fun modifyBoard(modifyBoard: ModifyBoard): Board {
         val boardEntity = boardEntityJpaRepository.findByIdOrNull(modifyBoard.boardId) ?: notFountThrow()
-        boardEntity.modify(BoardEntity.ModifyBoardEntity(
+        boardEntity.modify(
+            BoardEntity.ModifyBoardEntity(
             title = modifyBoard.title,
             content = modifyBoard.content,
             username = modifyBoard.username,

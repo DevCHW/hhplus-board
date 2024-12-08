@@ -1,4 +1,4 @@
-package com.hhplus.board.storage.core.entity
+package com.hhplus.board.storage.core.user
 
 import com.hhplus.board.storage.core.BaseEntity
 import jakarta.persistence.Column

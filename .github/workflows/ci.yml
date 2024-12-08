@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build-docker-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
+      - name: Test
+        uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
+        with:
+          arguments: test
+
+      # Gradle 빌드
+      - name: Build with Gradle
+        run: ./gradlew build -x test
+
+      # Docker 이미지 빌드
+      - name: docker image build
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/hhplus-framework-study-board .
+
+      # Docker Hub Login
+      - name: docker login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      # Docker Hub Image Push
+      - name: docker Hub push
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/hhplus-framework-study-board
+
+  # 위 과정에서 푸시한 이미지를 ec2에서 풀받아서 실행시키는 과정
+  deploy:
+    needs: build-docker-image # build-docker-image 과정이 완료되어야 실행
+    runs-on: ubuntu-latest # 실행될 인스턴스 OS와 버전
+
+    steps:
+      - name: executing remote ssh commands
+        uses: appleboy/ssh-action@master # ssh 접속하는 오픈소스
+        with:
+          key: ${{ secrets.EC2_PRIVATE_KEY }} # EC2 pem Key
+          host: ${{ secrets.EC2_IP }} # EC2 IP
+          username: ${{ secrets.EC2_USERNAME }} # EC2 유저
+          port: ${{ secrets.EC2_SSH_PORT }} # EC2 SSH Port
+          script: | # 실행할 스크립트 
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/hhplus-framework-study-board
+            sudo docker stop $(sudo docker ps -q) 2>/dev/null || true
+            sudo docker system prune -f
+            sudo docker run --name hhplus-framework-study-board -d -p 8080:8080 -e spring.profiles.active=live -e storage.datasource.core.username=${{ secrets.CORE_DB_USERNAME }} -e storage.datasource.core.password=${{ secrets.CORE_DB_PASSWORD }} -e storage.datasource.core.jdbc-url=${{ secrets.CORE_DB_URL }} ${{ secrets.DOCKERHUB_USERNAME }}/hhplus-framework-study-board

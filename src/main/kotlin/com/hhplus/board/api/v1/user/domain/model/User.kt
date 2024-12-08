@@ -1,6 +1,6 @@
 package com.hhplus.board.api.v1.user.domain.model
 
-import com.hhplus.board.storage.core.entity.UserEntity
+import com.hhplus.board.storage.core.user.UserEntity
 import java.time.LocalDateTime
 
 data class User(
