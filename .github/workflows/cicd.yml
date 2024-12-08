@@ -53,11 +53,11 @@ jobs:
 
     steps:
       - name: executing remote ssh commands
-        uses: appleboy/ssh-action@v0.1.6 # ssh 접속하는 오픈소스
+        uses: appleboy/ssh-action@master # ssh 접속하는 오픈소스
         with:
+          key: ${{ secrets.EC2_PRIVATE_KEY }} # EC2 pem Key
           host: ${{ secrets.EC2_IP }} # EC2 IP
           username: ${{ secrets.EC2_USERNAME }} # EC2 유저
-          key: ${{ secrets.EC2_PRIVATE_KEY }} # EC2 pem Key
           port: ${{ secrets.EC2_SSH_PORT }} # EC2 SSH Port
           script: | # 실행할 스크립트 
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/hhplus-framework-study-board
