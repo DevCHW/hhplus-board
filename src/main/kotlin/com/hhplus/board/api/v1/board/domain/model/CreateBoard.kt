@@ -1,7 +1,6 @@
 package com.hhplus.board.api.v1.board.domain.model
 
-import com.hhplus.board.storage.core.entity.BoardEntity
-import jakarta.persistence.Column
+import com.hhplus.board.storage.core.board.BoardEntity
 
 data class CreateBoard(
     val userId: Long,

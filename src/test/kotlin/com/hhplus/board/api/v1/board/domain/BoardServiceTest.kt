@@ -2,8 +2,8 @@ package com.hhplus.board.api.v1.board.domain
 
 import com.hhplus.board.api.v1.board.domain.model.CreateBoard
 import com.hhplus.board.api.v1.board.domain.model.ModifyBoard
-import com.hhplus.board.storage.core.entity.BoardEntity
-import com.hhplus.board.storage.core.repository.BoardEntityJpaRepository
+import com.hhplus.board.storage.core.board.BoardEntity
+import com.hhplus.board.storage.core.board.BoardEntityJpaRepository
 import io.mockk.every
 import io.mockk.mockk
 import org.assertj.core.api.Assertions.*

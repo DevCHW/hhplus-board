@@ -1,6 +1,6 @@
 package com.hhplus.board.api.v1.board.domain.model
 
-import com.hhplus.board.storage.core.entity.BoardEntity
+import com.hhplus.board.storage.core.board.BoardEntity
 import java.time.LocalDateTime
 
 data class Board(

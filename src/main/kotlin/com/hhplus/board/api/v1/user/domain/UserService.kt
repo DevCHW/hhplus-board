@@ -2,7 +2,7 @@ package com.hhplus.board.api.v1.user.domain
 
 import com.hhplus.board.api.v1.user.domain.model.User
 import com.hhplus.board.api.v1.user.domain.model.CreateUser
-import com.hhplus.board.storage.core.repository.UserEntityJpaRepository
+import com.hhplus.board.storage.core.user.UserEntityJpaRepository
 import com.hhplus.board.utils.notFountThrow
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
