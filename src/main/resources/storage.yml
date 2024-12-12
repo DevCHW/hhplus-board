@@ -34,6 +34,11 @@ storage:
 ---
 spring.config.activate.on-profile: live
 
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
 storage:
   datasource:
     core:
